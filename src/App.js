@@ -1,8 +1,9 @@
-import Overview from "./OverviewPage/overview";
+
 import Details from "./DetailsPage/details";
 import { PageContext } from "./Context";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
+import Page from "./Page";
 
 function App() {
   const [currentPage, setCurrentPage] = useState({ pageSize: 10, page: 0 });
@@ -13,22 +14,20 @@ function App() {
       value: "",
     },
   ]);
-  console.log(filters);
+  console.log("app",filters);
   return (
     <PageContext.Provider
       value={{ currentPage, setCurrentPage, filters, setFilters }}
     >
-      <Router>
-        
+      <Router>       
           <Switch>
             <Route path="/details">
               <Details />
             </Route>
             <Route path="/">
-              <Overview />
+              <Page />
             </Route>
-          </Switch>
-    
+          </Switch>  
       </Router>
     </PageContext.Provider>
   );

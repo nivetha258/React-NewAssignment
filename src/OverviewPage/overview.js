@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import List from "./list";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect,memo } from "react";
 import { useHistory } from "react-router-dom";
 import RadarChart from "./Chart/radarChart";
 import PieChart from "./Chart/pieChart";
@@ -12,42 +11,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Paper from "@mui/material/Paper";
 
 //component starts-------------
 
-const Overview = () => {
-  const [data, setData] = useState([]);
+const Overview = memo((props) => {
+  const data = props.data;
   let history = useHistory();
-
-  useEffect(() => {
-    axios
-    .get("https://api.publicapis.org/entries")
-    .then((res) => {
-      console.log("response", res.data.entries);
-      setData(res.data.entries);
-    })
-    .catch((err) => console.log("error", err));
-  }, []);
-
-  setInterval(()=>{
-    axios
-    .get("https://api.publicapis.org/entries")
-    .then((res) => {
-      console.log("response", res.data.entries.length !== data.length);
-      if(res.data.entries.length == data.length){
-
-        if (alert("Data got updated shall i refresh the page")) {
-          setData(res.data.entries);
-        }
-                // setData(res.data.entries);
-      }
-  
-    })
-    .catch((err) => console.log("error", err));
-  },600000)
 
 
   const moveToDetails = (index) => {
@@ -56,6 +26,7 @@ const Overview = () => {
       state: { data: data[index] },
     });
   };
+  console.log("overview render")
 
   return (
     <div>
@@ -85,6 +56,6 @@ const Overview = () => {
       </Box>
     </div>
   );
-};
+});
 
 export default Overview;

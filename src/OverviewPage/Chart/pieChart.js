@@ -26,7 +26,7 @@ const renderActiveShape = (props) => {
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
-
+ 
   return (
     <g>
       <text x={cx} y={cy} dy={8} width = {50} textAnchor={"middle"} fill={fill}>
@@ -51,7 +51,7 @@ const renderActiveShape = (props) => {
         fill={fill}
       />
       <path
-        d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
+        d ={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
         stroke={fill}
         fill="none"
       />
@@ -78,6 +78,9 @@ const renderActiveShape = (props) => {
 };
 
 const Example = (props) => {
+
+
+
   const [activeIndex, setActiveIndex] = useState(0);
   const { filters, setFilters } = useContext(PageContext);
   const onPieEnter = (_, index) => {
@@ -104,7 +107,7 @@ const Example = (props) => {
       },
     ]);
   };
-
+ console.log("pie render")
   return (
 
     <PieChart width={400} height={450}>

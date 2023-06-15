@@ -31,6 +31,8 @@ const Radarvalue = (props) => {
 
 
   let array = props.data;
+  
+  console.log(props.data)
   const uniqueValues = [...new Set(array.map((item) => item.Cors))];
   const valueCounts = array.reduce((counts, item) => {
     counts[item.Cors] = (counts[item.Cors] || 0) + 1;
@@ -39,23 +41,21 @@ const Radarvalue = (props) => {
 
   const data = uniqueValues.map((value) => {
     return {
-      subject: value,
-      A: valueCounts[value],
-      fullmark: props.data.length,
+      value: value,
+      count: valueCounts[value],
+      length: props.data.length,
     };
   });
   console.log(data);
-
-  return (
-    
-      
+  console.log("radar render")
+  return (  
       <RadarChart outerRadius={90} width={400} height={250} data={data}>
         <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis angle={45} domain={[0, 1425]} />
+        <PolarAngleAxis dataKey="value" />
+        <PolarRadiusAxis angle={45}  />
         <Radar
           name="CORS"
-          dataKey="A"
+          dataKey="count"
           stroke="#8884d8"
           fill="#8884d8"
           fillOpacity={0.6}
@@ -64,7 +64,6 @@ const Radarvalue = (props) => {
         <Tooltip />
         <Legend />
       </RadarChart>
-  
   );
 };
 
