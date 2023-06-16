@@ -26,7 +26,7 @@ const Page = () => {
 
     useEffect(()=>{
       fetchData()
-      const intervalId = setInterval(fetchData, 6000);
+      const intervalId = setInterval(fetchData, 600000);
       return () => {
         clearInterval(intervalId);
       };

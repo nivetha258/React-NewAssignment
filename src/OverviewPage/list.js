@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { PageContext } from "../Context";
 
 export default function DataGridDemo(props) {

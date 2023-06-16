@@ -6,6 +6,7 @@ import { useState } from "react";
 import Page from "./Page";
 
 function App() {
+  console.log("app render")
   const [currentPage, setCurrentPage] = useState({ pageSize: 10, page: 0 });
   const [filters, setFilters] = useState([
     {
@@ -14,6 +15,7 @@ function App() {
       value: "",
     },
   ]);
+  
   console.log("app",filters);
   return (
     <PageContext.Provider
